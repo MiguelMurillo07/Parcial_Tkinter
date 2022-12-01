@@ -4,6 +4,7 @@
 from tkinter import *
 import random
 from tkinter import messagebox
+import numpy as np
 
 # Definiciones de la app
 
@@ -15,10 +16,21 @@ def borrar():
     messagebox.showinfo("Borrar todo", "Hizo click en el botón borrar")
     t.set("")
     n.set("")
-    t_resultados.delete("1.0", "end")
+    frame_graficacion.delete("Borrar todo", "end")
 
 def calcular():
     messagebox.showinfo("Graficación", "Dió el paso siguiente para graficar")
+    k = 0
+    j = 0
+    for i in (0, n+1):
+        while j < 700:
+            texto = c.create_text(x+k, y+j, anchor="center", text=random.randint(0,9), font=("Rockwell", 15), fill="purple", activefill="red")
+
+
+
+#def matriz():
+    #n = np.array(1,2,3,4,5,6,7,8,9)
+    #random.sample(1)
 
 principal = Tk()
 principal.title("Matrices y Canvas")
@@ -89,15 +101,15 @@ bt_borrar = Button(frame_operaciones, text="Borrar datos", command=borrar, font=
 bt_borrar.place(x=310, y=25, width=100, height=30)
 
 # Frame resultados
-frame_resultados = Frame(principal)
-frame_resultados.config(bg="brown", width=680, height=200)
-frame_resultados.place(x=10, y=280)
-
+frame_graficacion = Frame(principal)
+frame_graficacion.config(bg="brown", width=680, height=200)
+frame_graficacion.place(x=10, y=280)
 
 # Creacion de canvas
 
-canva1 = Canvas()
-
+c = Canvas(frame_graficacion, width=400, height=300, bg='white')
+c.place(x=15, y=270)
+a = c.create_rectangle(10, 20, 10, 20, width=5, fill="white")
 
 
 principal.mainloop()
